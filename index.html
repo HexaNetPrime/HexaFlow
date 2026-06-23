@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>HexaFlow Pro - Advanced File Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="page active">
+    <div class="login-card">
+        <div class="lc-logo">
+            <div class="lc-icon">
+                <div class="lc-waves"><span></span><span></span><span></span></div>
+            </div>
+            <div class="lc-title">Hexa<span class="flow">Flow</span></div>
+            <div class="lc-subtitle">Advanced File Management Platform</div>
+        </div>
+        <div class="tab-row">
+            <button class="tab-btn active" id="tabUserBtn">👤 User</button>
+            <button class="tab-btn" id="tabAdminBtn">🛡 Admin</button>
+        </div>
+        <div id="userForm">
+            <div class="field-label">Your Name</div>
+            <input class="field-input" type="text" id="userName" placeholder="Enter name...">
+            <div class="login-err" id="userErr">Name required!</div>
+            <button class="btn-login" id="userLoginBtn">Enter →</button>
+        </div>
+        <div id="adminForm" style="display:none">
+            <div class="field-label">Admin Type</div>
+            <select class="field-input" id="adminType">
+                <option value="monitor">📊 Monitor</option>
+                <option value="files">📁 Files Admin</option>
+            </select>
+            <div class="field-label">Password</div>
+            <input class="field-input" type="password" id="adminPass" placeholder="Password...">
+            <div class="login-err" id="adminErr">Wrong password!</div>
+            <button class="btn-login" id="adminLoginBtn">Login →</button>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="appPage" class="page" style="display:none">
+    <nav>
+        <button class="hamburger" id="hamburgerBtn">☰</button>
+        <div class="nav-logo">
+            <div class="nav-icon"><div class="nav-waves"><span></span><span></span><span></span></div></div>
+            <div class="nav-brand">Hexa<span class="flow">Flow</span></div>
+        </div>
+        <div class="nav-right">
+            <div class="nav-badge" id="navBadge">User</div>
+            <div class="nav-user"><div class="nav-avatar" id="navAvatar">U</div><span id="navName">User</span></div>
+            <button class="btn-logout" id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+    <div class="app-layout">
+        <div class="sidebar" id="sidebar"></div>
+        <div class="menu-overlay" id="menuOverlay"></div>
+        <div class="main-content" id="mainContent"></div>
+    </div>
+</div>
+
+<!-- SHARED PAGE -->
+<div id="sharedPage" class="page" style="display:none">
+    <div class="sh-nav">
+        <div class="nav-logo"><div class="nav-icon"><div class="nav-waves"><span></span><span></span><span></span></div></div>
+        <div class="nav-brand">Hexa<span class="flow">Flow</span></div></div>
+        <div class="sh-badge">🔗 Shared</div>
+    </div>
+    <div class="sh-body">
+        <div class="sh-hero">
+            <div class="sh-ficon" id="shFIcon">📁</div>
+            <div><div class="sh-fname" id="shFName">Folder</div><div class="sh-fsub" id="shFSub">Loading...</div></div>
+        </div>
+        <div class="sh-login-prompt" id="shLoginPrompt">
+            <h4>Enter your name</h4>
+            <div class="sh-name-row">
+                <input type="text" id="shUserName" placeholder="Your name...">
+                <button class="btn-p" id="shLoginBtn">Enter</button>
+            </div>
+        </div>
+        <div id="shFilesArea"><div class="sh-grid" id="shGrid"></div><div class="empty-st" id="shEmpty" style="display:none">📂 No files</div></div>
+        <button class="btn-s" id="shShareFolderBtn" style="margin-top:1rem;">🔗 Share</button>
+    </div>
+</div>
+
+<!-- MODALS -->
+<div class="modal-bg" id="shareModal"><div class="modal"><button class="modal-x" id="closeModalBtn">×</button><h3>Share Link</h3><div class="link-row"><input type="text" id="linkInput" readonly><button id="copyLinkBtn">Copy</button></div></div></div>
+<div class="modal-bg" id="infoModal"><div class="modal modal-lg"><button class="modal-x" id="closeInfoModalBtn">×</button><h3>📄 Detailed File Info</h3><div id="fileInfoContent"></div></div></div>
+<div class="modal-bg" id="deleteModal"><div class="modal"><button class="modal-x" id="closeDeleteModalBtn">×</button><h3 style="color:#ef4444;">Delete File?</h3><p id="deleteFileName" style="margin:1rem 0;"></p><div style="display:flex;gap:1rem;"><button class="btn-p" id="confirmDeleteBtn" style="background:#ef4444;">Delete</button><button class="btn-s" id="cancelDeleteBtn">Cancel</button></div></div></div>
+
+<div class="toast" id="toast"><span id="toastIc">✓</span><span id="toastMsg">Done</span></div>
+<input type="file" id="fileInput" multiple style="display:none">
+<input type="file" id="adminFileInput" multiple style="display:none">
+
+<script src="script.js"></script>
+</body>
+</html>
